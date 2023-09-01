@@ -1,0 +1,8 @@
+API_KEY_GOOGLE = 'AIzaSyDAeVxeXRvS8jvgcD_YCAsYRX58rJa3hpc'
+MDP_ADMIN_HUGO_MONGO = "1p0uCQ69ZQQngPKu"
+MONGOOSE_CONNECT_URL = "mongodb+srv://Sn4keyes:1p0uCQ69ZQQngPKu@cluster0.kjfexm6.mongodb.net/mern?retryWrites=true&w=majority"
+
+
+
+// var cors = require('cors')
+// app.use(cors())

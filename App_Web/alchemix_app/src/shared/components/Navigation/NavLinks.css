@@ -1,0 +1,114 @@
+.navlinks-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+
+.navlinks-links li {
+  margin: 1rem;
+}
+
+.navlinks-links .navlinks-separator {
+  border-left: 2px solid #fff;
+  height: 30px;
+}
+
+.navlinks-links a {
+  border: 2px solid transparent;
+  color: #fff;
+  padding: 0.5rem;
+}
+
+.navlinks-links a:hover,
+.navlinks-links a.active {
+  border-bottom: 3px solid #477efe;
+}
+
+.navlinks-links button,
+.navlinks-links .navlinks-login_button a {
+  cursor: pointer;
+  border-radius: 30px;
+  color: #fff;
+  background: #477efe;
+  padding: 8px 10px;
+  font: inherit;
+  font-weight: bold;
+}
+
+.navlinks-links button:focus {
+  outline: none;
+}
+
+.navlinks-links button:hover,
+.navlinks-links .navlinks-login_button a:hover,
+.navlinks-links button.active,
+.navlinks-links .navlinks-login_button a.active {
+  background: #fff;
+  color: #477efe;
+  padding: 8px 10px;
+  border: 2px solid #fff;
+}
+
+.navlinks-links .navlinks-user_image {
+  width: 40px;
+  height: 40px;
+  border: 2px solid #fff;
+  color: #fff;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navlinks-user_image img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+.navlinks-user_image img:hover,
+.navlinks-user_image img:active {
+  content: url('../../../assets/images/Picto_no_user_profil_image_black.png');
+}
+
+@media (min-width: 768px) {
+  .navlinks-links {
+    flex-direction: row;
+  }
+
+  .navlinks-links li {
+    margin: 0 0.5rem;
+  }
+
+  .navlinks-links a {
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .navlinks-links button {
+    cursor: pointer;
+    border: 2px solid #477efe;
+    border-radius: 30px;
+    color: #fff;
+    background: #477efe;
+    padding: 8px 10px;
+    font: inherit;
+    font-weight: bold;
+  }
+  
+  .navlinks-links button:hover,
+  .navlinks-links button:active {
+    background: #fff;
+    color: #477efe;
+    padding: 8px 10px;
+    border: 2px solid #fff;
+  }
+}

@@ -1,0 +1,8 @@
+# FROM node:latest
+FROM node:latest AS build
+WORKDIR /app
+
+COPY ./App_Backend/package.json .
+RUN npm install
+COPY ./App_Backend/ .
+CMD npm start
