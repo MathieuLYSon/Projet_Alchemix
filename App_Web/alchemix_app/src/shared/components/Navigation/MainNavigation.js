@@ -33,12 +33,12 @@ const MainNavigation = props => {
           <span />
           <span />
         </button>
-        <div>
+        <div className='main_navi_left'>
           <img src={AlchemixLogo} className="main-navigation_logo" alt="Alchemix logo" />
+          <h1 className="main-navigation_title">
+            <Link to="/">Alchemix</Link>
+          </h1>
         </div>
-        <h1 className="main-navigation_title">
-          <Link to="/">Alchemix</Link>
-        </h1>
         <nav className="main-navigation_header-nav">
           <NavLinks />
         </nav>

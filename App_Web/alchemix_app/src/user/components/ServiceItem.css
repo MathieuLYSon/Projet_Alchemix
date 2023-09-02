@@ -1,5 +1,36 @@
 .service_item_container {
-  margin: 1rem;
-  width: calc(45% - 2rem);
-  min-width: 17.5rem;
+  margin: 16px;
+  width: calc(45% - 32rem);
+  min-width: 245px;
+}
+
+.service_item {
+  background-color: #1E1E1E;
+}
+
+.service_in_dev .service_item {
+  background-color: rgb(30 30 30 / 20%);
+}
+
+.service_image {
+  background-color: #fff;
+  padding: 10px 0;
+}
+
+.service_image img {
+  width: 150px;
+  height: 150px;
+}
+
+.service_info {
+  background-color: #1E1E1E;
+  padding: 20px 0;
+}
+
+.service_in_dev .service_info {
+  background-color: rgb(255 255 255 / 15%);
+}
+
+.service_info h2 {
+  margin: 0;
 }

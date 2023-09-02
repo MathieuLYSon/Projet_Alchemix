@@ -106,6 +106,7 @@ const Auth = () => {
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
         {isLoading && <LoadingSpinner asOverlay />}
+        <div className='spacer'></div>
         <div className='auth_container'>
           <h2>Connectez-vous à Alchemix</h2>
           <hr></hr>

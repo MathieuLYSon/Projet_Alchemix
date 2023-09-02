@@ -16,6 +16,10 @@ const DisplayInfoUser = props => {
         <p className='list_info_right'>{props.email}</p>
         <p className='list_info_left'> ID </p>
         <p className='list_info_right'>{props.id}</p>
+        <p className='list_info_left'>Musiques enregistrées</p>
+        <p className='list_info_right'>Entrer un nombre</p>
+        <p className='list_info_left'>Musiques recommandés ajouté à Spotify</p>
+        <p className='list_info_right'>Entrer un nombre</p>
       </div>
     </div>
   );

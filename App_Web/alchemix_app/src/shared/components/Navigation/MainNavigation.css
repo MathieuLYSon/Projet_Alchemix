@@ -17,9 +17,16 @@
   background: white;
 }
 
+.main_navi_left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .main-navigation_title {
   color: white;
-  /* width: 30%; */
+  margin: 0;
+  margin-left: 10px;
 }
 
 .main-navigation_title a {
@@ -36,7 +43,8 @@
 }
 
 .main-navigation_logo {
-  width: 200px;
+  width: 60px;
+  height: 60px;
 }
 
 @media (min-width: 768px) {

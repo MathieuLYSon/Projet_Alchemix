@@ -29,7 +29,12 @@ const NavLinks = props => {
       )}
       {auth.isLoggedIn && (
         <li>
-          <NavLink to="/music">Mes recommandations</NavLink>
+          <NavLink to="/music">Mes musics</NavLink>
+        </li>
+      )}
+      {auth.isLoggedIn && (
+        <li>
+          <NavLink to="/recommandation">Mes recommandations</NavLink>
         </li>
       )}
       {auth.isLoggedIn && (
@@ -40,14 +45,6 @@ const NavLinks = props => {
       <li>
         <div className='navlinks-separator'></div>
       </li>
-      {/* {auth.isLoggedIn && (
-        <li>
-            <NavLink to="/:userId/profil" className="navlinks-user_image">
-              {auth.isLoggedIn && <img src={NoUserImage} alt="user_image"/>}
-              {!auth.isLoggedIn && <img src={NoUserImage} alt='no_user_profil_image'/>}
-            </NavLink>
-        </li>
-      )} */}
       {!auth.isLoggedIn && (
         <li className="navlinks-login_button">
           <NavLink to="/auth">Se connecter</NavLink>

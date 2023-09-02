@@ -1,22 +1,24 @@
-import SpotifyLogo from '../../assets/images/Spotify_logo.png'
+// import SpotifyLogo from '../../assets/images/Spotify_logo.png'
+// import NapsterLogo from '../../assets/images/Napster_logo.png'
+// import DeezerLogo from '../../assets/images/Deezer_logo.png'
 
 export const ConnexionService = [
   {
     id: 1,
     name: 'Spotify',
-    imageUrl: {SpotifyLogo},
+    imageUrl: 'Spotify_logo.png',
     inDev: false,
   },
   {
     id: 2,
     name: 'Napster',
-    imageUrl: '../../assets/Napster_logo.png',
+    imageUrl: 'Napster_logo.png',
     inDev: true,
   },
   {
     id: 3,
     name: 'Deezer',
-    imageUrl: '../../assets/Deezer_logo.png',
+    imageUrl: 'Deezer_logo.png',
     inDev: true,
   },
 ];

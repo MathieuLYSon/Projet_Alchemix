@@ -11,6 +11,7 @@ import NewPlace from './pages/NewPlace';
 import UserPlaces from './pages/UserPlaces';
 import UpdatePlace from './pages/UpdatePlace';
 import MusicsPage from './music/pages/MusicsPage';
+import RecommendationPage from './music/pages/RecommendationPage';
 import WelcomePage from './pages/WelcomePage';
 import Auth from './user/pages/Auth';
 import MainNavigation from './shared/components/Navigation/MainNavigation';
@@ -32,6 +33,7 @@ const App = () => {
         <Route path="/places/new/" element={<NewPlace />}/>
         <Route path="/places/:placeId" element={<UpdatePlace />}/>
         <Route path="/music" element={<MusicsPage />}/>
+        <Route path='/recommandation' element={<RecommendationPage />}/>
         <Route path ='*' element={<Users />} />
       </Routes>
     );
