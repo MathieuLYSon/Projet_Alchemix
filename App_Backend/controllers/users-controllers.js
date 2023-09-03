@@ -82,7 +82,12 @@ const signup = async (req, res, next) => {
     email,
     image: req.file.path,
     password: hashedPassword,
-    places: []
+    places: [],
+    musics: [],
+    // spotifyId,
+    // displayName,
+    // accessToken,
+    // refreshToken,
   });
 
   try {
@@ -100,7 +105,7 @@ const signup = async (req, res, next) => {
     token = jwt.sign(
       { userId: createdUser.id, email: createdUser.email },
       'supersecret_dont_share',
-      { expiresIn: '1h' }
+      { expiresIn: '6h' }
     );
   } catch (err) {
     const error = new HttpError(
@@ -110,9 +115,7 @@ const signup = async (req, res, next) => {
     return next(error);
   }
 
-  res
-    .status(201)
-    .json({ userId: createdUser.id, email: createdUser.email, token: token });
+  res.status(201).json({ userId: createdUser.id, email: createdUser.email, token: token });
 };
 
 const login = async (req, res, next) => {

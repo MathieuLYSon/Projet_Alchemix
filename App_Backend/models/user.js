@@ -9,7 +9,11 @@ const userSchema = new Schema({
     password: { type: String, required: true, minlength: 6 },
     image: { type: String, required: true },
     places: [{ type: mongoose.Types.ObjectId, required: true, ref: 'Place'}],
-    musics: [{ type:mongoose.Types.ObjectId, require: true, ref: 'Music'}]
+    musics: [{ type:mongoose.Types.ObjectId, require: true, ref: 'Music'}],
+    spotifyId: { type: String, require: false },
+    displayName: { type: String, require: false },
+    accessToken: { type: String, require: false },
+    refreshToken: { type: String, require: false },
 });
 
 userSchema.plugin(uniqueValidator);

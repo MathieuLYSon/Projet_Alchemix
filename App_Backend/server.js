@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
 const placesRoutes = require('./routes/places-routes');
 const usersRoutes = require('./routes/users-routes');
 const musicsRoutes = require('./routes/musics-routes');
+const servicesRoutes = require('./routes/services-routes');
 const HttpError = require('./models/http-error');
 
 const app = express();
@@ -30,6 +31,7 @@ app.use((req, res, next) => {
 app.use('/api/places', placesRoutes);
 app.use('/api/users', usersRoutes);
 app.use('/api/music', musicsRoutes);
+app.use('/api/services', servicesRoutes);
 
 app.use((req, res, next) => {
   const error = new HttpError('Could not find this route.', 404);
@@ -51,7 +53,7 @@ app.use((error, req, res, next) => {
 
 mongoose
   .connect(
-    `mongodb+srv://Sn4keyes:1p0uCQ69ZQQngPKu@cluster0.kjfexm6.mongodb.net/mern?retryWrites=true&w=majority`
+    `mongodb+srv://Backend_API:sO0xNVLQM8CzAAW6@cluster0.kjfexm6.mongodb.net/mern?retryWrites=true&w=majority`
   )
   .then(() => {
     app.listen(5000);
