@@ -1,0 +1,64 @@
+version: '3.9'
+#################### NETWORKS ####################
+networks:
+  mongoDB_net:
+    name: "mongoDB_net"
+  frontend_net:
+    name: "frontend_net"
+
+#################### SERVICES ####################
+services:
+#################### DATABASE ####################
+  mongoDB:
+    container_name: mongoDB
+    image: mongo:latest
+    networks:
+      - mongoDB_net
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: AlcheMix2023
+    volumes:
+      - ./Volumes\Database:/data/db
+    restart: always
+
+  mongoExpress:
+    container_name: mongoExpress
+    image: mongo-express
+    ports:
+      - "8081:8081"
+    networks:
+      - mongoDB_net
+    links:
+      - mongoDB
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: AlcheMix2023
+      ME_CONFIG_MONGODB_URL: mongodb://root:AlcheMix2023@mongoDB:27017/
+    depends_on:
+      mongoDB:
+        condition: service_started
+    restart: always
+
+#################### BACKEND ####################
+  nodejs.app:
+    container_name: nodeJsApp
+    build:
+      context: .
+      dockerfile: ./App_Backend/DockerFile
+    env_file: .env
+    ports:
+      - "8082:8082"
+    depends_on:
+      - mongoDB
+      - mongoExpress
+    restart: unless-stopped
+
+#################### FRONTEND ####################
+  reactjs.app:
+    container_name: reactJsApp
+    build:
+      context: .
+      dockerfile: ./App_Web/DockerFile
+    ports:
+      - "8080:80"
+    restart: unless-stopped

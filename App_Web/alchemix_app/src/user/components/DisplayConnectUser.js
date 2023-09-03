@@ -4,7 +4,7 @@ import { ConnexionService } from './ConnexionService';
 import ServiceItem from './ServiceItem';
 import './DisplayConnectUser.css';
 
-const DisplayConnectUser = props => {
+const DisplayConnectUser = async props => {
   const [isLoginMode, setIsLoginMode] = useState(true);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
