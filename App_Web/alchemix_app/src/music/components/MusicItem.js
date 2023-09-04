@@ -12,7 +12,7 @@ const MusicItem = props => {
       <Card className="music-item__content">
         <Link to={`/${props.id}/music`}>
           <div className="music-item__image">
-            <Avatar image={`http://localhost:5000/${props.image}`} alt={props.name} />
+            <Avatar image={`http://localhost:8082/${props.image}`} alt={props.name} />
           </div>
           <div className="music-item__info">
             <h2>{props.name}</h2>

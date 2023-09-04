@@ -48,7 +48,7 @@ const ServiceItem = props => {
   const handleSpotifyLogin = async () => {
     try {
       // Appelez la route d'authentification Spotify dans le backend
-      const response = await axios.get('http://localhost:5000/api/services/spotify/login');
+      const response = await axios.get('http://localhost:8082/api/services/spotify/login');
       
       // Redirigez l'utilisateur vers l'URL renvoyée par Spotify (l'URL d'authentification)
       window.location.href = response.data.authURL;

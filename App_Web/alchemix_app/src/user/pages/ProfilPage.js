@@ -20,7 +20,7 @@ const UserProfil= props => {
     const fetchUsers = async () => {
       try {
         const responseData = await sendRequest(
-          `http://localhost:5000/api/users/${userId}`
+          `http://localhost:8082/api/users/${userId}`
         );
         console.log("UserProfil ResponseData == ", responseData.user);
         setLoadedUsers(responseData.user);

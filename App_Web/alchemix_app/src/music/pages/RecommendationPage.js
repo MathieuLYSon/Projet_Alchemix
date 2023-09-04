@@ -13,7 +13,7 @@ const RecommandationPage = () => {
         const fetchUsers = async () => {
           try {
             const responseData = await sendRequest(
-              'http://localhost:5000/api/music'
+              'http://localhost:8082/api/music'
             );
             console.log(responseData.existingmusics)
             setLoadedUsers(responseData.existingmusics);

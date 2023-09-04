@@ -26,7 +26,7 @@ const ProfilUserItem = props => {
       <div className='profil_header'>
         <div className='user_image'>
           <img
-            src={`http://localhost:5000/${props.image}`}
+            src={`http://localhost:8082/${props.image}`}
             alt={`introuvable`}
           />
         </div>
