@@ -1,14 +1,14 @@
 const fs = require('fs');
-
-const { validationResult } = require('express-validator');
 const mongoose = require('mongoose');
-
 const HttpError = require('../models/http-error');
-const getCoordsForAddress = require('../util/location');
+const { validationResult } = require('express-validator');
+
 const Place = require('../models/place');
 const User = require('../models/user');
+const getCoordsForAddress = require('../util/location');
 
 const getPlaceById = async (req, res, next) => {
+  console.log("########## ########## Get Place by Id Routes ########## ##########");
   const placeId = req.params.pid;
 
   let place;
@@ -31,9 +31,11 @@ const getPlaceById = async (req, res, next) => {
   }
 
   res.json({ place: place.toObject({ getters: true }) });
+  console.log("########## ########## ########## ##########");
 };
 
 const getPlacesByUserId = async (req, res, next) => {
+  console.log("########## ########## Get Places by UserId Routes ########## ##########");
   const userId = req.params.uid;
   console.log("userId == ", req.params.uid);
   // let places;
@@ -60,9 +62,11 @@ const getPlacesByUserId = async (req, res, next) => {
       place.toObject({ getters: true })
     )
   });
+  console.log("########## ########## ########## ##########");
 };
 
 const createPlace = async (req, res, next) => {
+  console.log("########## ########## Created Place Routes ########## ##########");
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return next(
@@ -122,9 +126,11 @@ const createPlace = async (req, res, next) => {
   }
 
   res.status(201).json({ place: createdPlace });
+  console.log("########## ########## ########## ##########");
 };
 
 const updatePlace = async (req, res, next) => {
+  console.log("########## ########## Update Place Routes ########## ##########");
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return next(
@@ -165,9 +171,11 @@ const updatePlace = async (req, res, next) => {
   }
 
   res.status(200).json({ place: place.toObject({ getters: true }) });
+  console.log("########## ########## ########## ##########");
 };
 
 const deletePlace = async (req, res, next) => {
+  console.log("########## ########## Delete Place Routes ########## ##########");
   const placeId = req.params.pid;
 
   let place;
@@ -216,6 +224,7 @@ const deletePlace = async (req, res, next) => {
   });
 
   res.status(200).json({ message: 'Deleted place.' });
+  console.log("########## ########## ########## ##########");
 };
 
 exports.getPlaceById = getPlaceById;

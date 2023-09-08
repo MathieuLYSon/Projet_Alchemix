@@ -4,6 +4,7 @@ const HttpError = require('../models/http-error');
 const Music = require('../models/music');
 
 const getMusic = async (req, res, next) => {
+  console.log("########## ########## Get Musics Routes ########## ##########");
     let existingmusics;
     try {
       existingmusics = await Music.find({});
@@ -24,6 +25,7 @@ const getMusic = async (req, res, next) => {
           );
         return next(error);
     }
+    console.log("########## ########## ########## ##########");
 };
 
 exports.getMusic = getMusic;

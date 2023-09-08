@@ -28,25 +28,25 @@ const App = () => {
     routes = (
       <Routes>
         <Route path="/" element={<Users />}/>
-        <Route path="/:userId/places" element={<UserPlaces />}/>
-        <Route path='/:userId/profil' element={<UserProfil />}/>
-        <Route path="/places/new/" element={<NewPlace />}/>
-        <Route path="/places/:placeId" element={<UpdatePlace />}/>
-        <Route path="/music" element={<MusicsPage />}/>
-        <Route path='/recommandation' element={<RecommendationPage />}/>
+        <Route path="/:userId/places" element={<UserPlaces />} exact={true} />
+        <Route path='/:userId/profil' element={<UserProfil />} exact={true} />
+        <Route path="/places/new/" element={<NewPlace />} exact={true} />
+        <Route path="/places/:placeId" element={<UpdatePlace />} exact={true} />
+        <Route path="/music" element={<MusicsPage />} exact={true} />
+        <Route path='/recommandation' element={<RecommendationPage />} exact={true} />
         <Route path ='*' element={<Users />} />
       </Routes>
     );
   } else {
     routes = (
       <Routes>
-        <Route path="/welcome" element={<WelcomePage />}/>
-        <Route path="/" element={<Users />}/>
-        <Route path="/:userId/places" element={<UserPlaces />}/>
-        <Route path='/profil' element={<UserProfil />}/>
-        <Route path="/music" element={<MusicsPage />}/>
-        <Route path="/auth" element={<Auth />}/>
-        {/* <Route path ='*' element={<Users />} /> */}
+        <Route path="/welcome" element={<WelcomePage />} exact={true}/>
+        <Route path="/" element={<Users />} exact={true} />
+        <Route path="/:userId/places" element={<UserPlaces />} exact={true}/>
+        <Route path='/profil' element={<UserProfil />} exact={true}/>
+        <Route path="/music" element={<MusicsPage />} exact={true}/>
+        <Route path="/auth" element={<Auth />} exact={true}/>
+        <Route path ='*' element={<WelcomePage />} />
       </Routes>
     );
   }

@@ -14,7 +14,7 @@ const ProfilUserList = props => {
 
   return (
     <div className='profil_user_item-container'>
-      {props.items.map(user => 
+      {props.items.map(user => (
         <ProfilUserItem 
           key={user.id}
           id={user.id}
@@ -22,7 +22,7 @@ const ProfilUserList = props => {
           email={user.email}
           image={user.image}
         />
-      )}
+      ))}
     </div>
   );
 };

@@ -6,6 +6,7 @@ const HttpError = require('../models/http-error');
 const User = require('../models/user');
 
 const getUsers = async (req, res, next) => {
+  console.log("########## ########## Get Users Routes ########## ##########");
   let users;
   try {
     users = await User.find({}, '-password');
@@ -17,15 +18,16 @@ const getUsers = async (req, res, next) => {
     return next(error);
   }
   res.json({ users: users.map(user => user.toObject({ getters: true })) });
+  console.log("########## ########## ########## ##########");
 };
 
 const getProfilByUserId = async (req, res, next) => {
+  console.log("########## ########## Get Profil by UserId Routes ########## ##########");
   const userId = req.params.uid;
-  console.log("userId == ", req.params.uid);
+  // console.log("userId == ", req.params.uid);
   let users;
   try {
     users = await User.find({}, ('-password'));
-    console.log(users);
   } catch (err) {
     const error = new HttpError(
       'Fetching users failed, please try again later.',
@@ -35,9 +37,11 @@ const getProfilByUserId = async (req, res, next) => {
   }
   const filteredUser = users.filter(user => user._id == userId);
   res.json({ user: filteredUser.map(user => user.toObject({ getters: true })) });
+  console.log("########## ########## ########## ##########");
 };
 
 const signup = async (req, res, next) => {
+  console.log("########## ########## Signup Routes ########## ##########");
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return next(
@@ -84,10 +88,10 @@ const signup = async (req, res, next) => {
     password: hashedPassword,
     places: [],
     musics: [],
-    // spotifyId,
-    // displayName,
-    // accessToken,
-    // refreshToken,
+    spotifyId: "",
+    displayName: "",
+    accessToken: "",
+    refreshToken: "",
   });
 
   try {
@@ -116,16 +120,23 @@ const signup = async (req, res, next) => {
   }
 
   res.status(201).json({ userId: createdUser.id, email: createdUser.email, token: token });
+  console.log("########## ########## ########## ##########");
 };
 
 const login = async (req, res, next) => {
+  console.log("########## ########## Login Routes ########## ##########");
   const { email, password } = req.body;
 
+  console.log("Login Fonction run :");
+  console.log("Email == ", email);
+  console.log("Password == ", password);
   let existingUser;
 
   try {
     existingUser = await User.findOne({ email: email });
+    console.log("Existing User == ", existingUser);
   } catch (err) {
+    console.log("Existing User == ", existingUser);
     const error = new HttpError(
       'Logging in failed, please try again later.',
       500
@@ -144,6 +155,7 @@ const login = async (req, res, next) => {
   let isValidPassword = false;
   try {
     isValidPassword = await bcrypt.compare(password, existingUser.password);
+    console.log("Password is valide == ", isValidPassword);
   } catch (err) {
     const error = new HttpError(
       'Could not log you in, please check your credentials and try again.',
@@ -167,7 +179,9 @@ const login = async (req, res, next) => {
       'supersecret_dont_share',
       { expiresIn: '1h' }
     );
+    console.log("Toker User == ", token);
   } catch (err) {
+    console.log("Error Toker User == ", token);
     const error = new HttpError(
       'Logging in failed, please try again later.',
       500
@@ -180,6 +194,7 @@ const login = async (req, res, next) => {
     email: existingUser.email,
     token: token
   });
+  console.log("########## ########## ########## ##########");
 };
 
 exports.getUsers = getUsers;

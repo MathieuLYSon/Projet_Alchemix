@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-// import { Link } from 'react-router-dom';
 
 // import Button from '../../shared/components/FormElements/Button';
 import DisplayInfoUser from './DisplayInfoUser'
@@ -10,7 +9,11 @@ const ProfilUserItem = props => {
   const [displayMode, setDisplayMode] = useState();
 
   useEffect(() => {
-    setDisplayMode("Info");
+    try {
+      if (!displayMode) {
+        setDisplayMode("Info");
+      }
+    }  catch (err) {}
   }, [setDisplayMode]);
 
   const displayManagement = (mode) => {

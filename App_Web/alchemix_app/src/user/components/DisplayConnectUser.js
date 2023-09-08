@@ -4,8 +4,8 @@ import { ConnexionService } from './ConnexionService';
 import ServiceItem from './ServiceItem';
 import './DisplayConnectUser.css';
 
-const DisplayConnectUser = async props => {
-  const [isLoginMode, setIsLoginMode] = useState(true);
+const DisplayConnectUser = props => {
+  // const [isLoginMode, setIsLoginMode] = useState(true);
   // const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
   // <if (isLoginMode) {
@@ -28,7 +28,7 @@ const DisplayConnectUser = async props => {
   return (
     <div className='display_connect_user_container'>
       {ConnexionService.map(services => (
-        <ServiceItem 
+        <ServiceItem
           key={services.id}
           name={services.name}
           imageUrl={services.imageUrl}

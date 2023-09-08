@@ -45,4 +45,4 @@ ln -sf /dev/stdout $SPARK_WORKER_LOG
 
 # COPY ./AI_Model/src/start-spark.sh /
 
-CMD ["/bin/bash", "https://net.cloudinfrastructureservices.co.uk/start-spark.sh"]
+# CMD ["/bin/bash", "https://net.cloudinfrastructureservices.co.uk/start-spark.sh"]

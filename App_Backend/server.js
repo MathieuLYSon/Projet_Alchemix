@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-
+// const cors = require('cors');
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -18,7 +18,8 @@ app.use(bodyParser.json());
 app.use('/uploads/images', express.static(path.join('uploads', 'images')));
 
 app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Credentials', true); 
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8083/');
   res.setHeader(
     'Access-Control-Allow-Headers',
     'Origin, X-Requested-With, Content-Type, Accept, Authorization'
@@ -27,6 +28,23 @@ app.use((req, res, next) => {
 
   next();
 });
+
+// // Autorisez uniquement certaines origines à accéder à votre backend
+// const allowedOrigins = ['http://localhost:8083', 'http://localhost:8083'];
+// const corsOptions = {
+//   origin: function (origin, callback) {
+//     if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error('Accès non autorisé par CORS'));
+//     }
+//   },
+// };
+
+// app.use(cors(corsOptions));
+
+// app.use(cors());
+// app.options('*', cors());
 
 app.use('/api/places', placesRoutes);
 app.use('/api/users', usersRoutes);
@@ -56,8 +74,9 @@ mongoose
     `mongodb+srv://Backend_API:sO0xNVLQM8CzAAW6@cluster0.kjfexm6.mongodb.net/mern?retryWrites=true&w=majority`
   )
   .then(() => {
-    // app.listen(5000);
-    app.listen(8082);
+    app.listen(8082, () => {
+      console.log('Backend server is running on port 8082');
+    });
   })
   .catch(err => {
     console.log(err);
