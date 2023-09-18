@@ -4,7 +4,7 @@ from bson import ObjectId
 
 #__init__.py
 # from src.data_processing.bson.objectid import ObjectId
-from utils.check_data_exist import check_data_exist
+from src.utils.check_data_exist import check_data_existance
 from src.collect_data.get_user_histo import get_user_histo
 from src.collect_data.get_user_matrix import get_user_matrix
 from src.collect_data.get_all_user_ids import get_all_user_ids
@@ -36,17 +36,24 @@ def all_user_reco(model_path : str):
 
 
 def main(arg):
+    
     print(arg)
     print(len(arg))
-    if check_data_exist() == True:
+    
+    if check_data_existance() == True:
+    
         print("Il y a des données")
+        
         if len(arg) == 2:
             print(arg[1])
             all_user_reco(arg[1])
+            
         else:
             print("Mauvaise entrée il faut renseigner le chemin vers le modèle")
+            
     else:
         print(" #################### Pas de données à traiter #################### \n")
+        
     print("Les recommandations ont été mises à jour")
     exit()
 
