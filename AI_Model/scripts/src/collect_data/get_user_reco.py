@@ -63,8 +63,6 @@ def get_user_recommendations(user_matrix, model_path : str):
         # reco_model = unpickle_steps.load()
 
     print("Le modèle est chargé")
-    print(type(reco_model))
-    print(reco_model)
 
     # Retirer les musiques connues de l'utilisateur de all_musics
     all_musics = get_all_musics()

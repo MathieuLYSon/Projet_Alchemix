@@ -35,4 +35,11 @@ def get_all_user_ids():
 
     user_histo_ids = all_ids.unique()
 
+    print(" ################## ALL USERS IDS ################## ")
+    print(type(user_histo_ids))
+    print(user_histo_ids)
+
+    for user in user_histo_ids:
+        print(user)
+
     return user_histo_ids

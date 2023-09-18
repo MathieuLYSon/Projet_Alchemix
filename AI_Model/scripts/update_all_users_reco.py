@@ -42,7 +42,7 @@ def main(arg):
     
     print(arg)
     print(len(arg))
-    print("check_data")
+    print(" ################### check_data ################### ")
     check_data = check_data_existance()
     print(check_data)
 
