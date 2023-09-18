@@ -24,7 +24,6 @@ def check_data_existance():
                                                               database_name, likes_collection)
     
     cursor_histo = collection_mongo_user_histo.find({}, {"user_id": 1})
-    list_histo = cursor_histo.count()
     list_histo = pd.Dataframe(cursor_histo)
     histo_count = len(list_histo)
 
