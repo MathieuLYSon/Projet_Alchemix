@@ -74,21 +74,21 @@ def get_user_recommendations(user_matrix, model_path : str):
     collection_mongo_user_reco = mongo_connect_to_collection(username_mongo, password, cluster_uri, 
                                                                  database_name, collection_name)
     
-    cursor = collection_mongo_user_reco.find({"user_id" : user_id}, {"track_id": 1})
-    len_cur = list(cursor)
+    reco_cursor = collection_mongo_user_reco.find({"user_id" : user_id}, {"track_id": 1})
+    df_reco = pd.DataFrame(reco_cursor)
+    reco_nb = len(df_reco)
 
-    # if len(len_cur) > 0:
-    #     reco_id = pd.DataFrame(cursor)
-    #     reco_ids = reco_id["user_id"]
-    #     all_ids = pd.concat([histo_track_ids, likes_track_ids, reco_ids], axis=0)
-    #     all_ids = all_ids.unique()
+    if reco_nb > 0:
+        reco_ids = df_reco["track_id"]
+        all_ids = pd.concat([histo_track_ids, likes_track_ids, reco_ids], axis=0)
+        all_ids = all_ids.unique()
 
-    # else:
-    #     all_ids = pd.concat([histo_track_ids, likes_track_ids], axis=0)
-    #     all_ids = all_ids.unique()
+    else:
+        all_ids = pd.concat([histo_track_ids, likes_track_ids], axis=0)
+        all_ids = all_ids.unique()
 
-    all_ids = pd.concat([histo_track_ids, likes_track_ids], axis=0)
-    all_ids = all_ids.unique()
+    # all_ids = pd.concat([histo_track_ids, likes_track_ids], axis=0)
+    # all_ids = all_ids.unique()
 
     potential_reco = all_musics[~all_musics["track_id"].isin(all_ids)]
 
