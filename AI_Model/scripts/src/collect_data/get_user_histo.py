@@ -3,7 +3,7 @@ import sys
 import pandas as pd
 from bson.objectid import ObjectId
 
-# __init__.py
+#__init__.py
 from src.connections.mongo_connect import mongo_connect_to_collection
 
 
@@ -33,12 +33,21 @@ def get_user_histo(user_id: str):
     mongo_id = ObjectId(user_id)
     cursor = collection_mongo_user_histories.find({"user_id": mongo_id}, projection)
     df = pd.DataFrame(cursor)
+
+    print(" ################### MUSICS_INFO ################### \n")
+    print(df.columns)
+    print(df)
+
     musics_info = df["musics"][0]
     df_musics = pd.DataFrame(musics_info)
     df_musics = df_musics.T
     df_musics["pull_timestamp"] = df["pull_timestamp"][0]
     df_musics["user_id"] = df["user_id"][0]
     df_musics["__v"] = df["__v"][0]
+
+    print(" ################### DF_MUSICS ################### \n")
+    print(df_musics.columns)
+    print(df_musics)
 
     return df_musics
 

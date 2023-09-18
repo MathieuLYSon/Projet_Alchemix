@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import pandas as pd
-# __init__.py
+
+#__init__.py
 from src.connections.mongo_connect import mongo_connect_to_collection
 
 # MongoDB Atlas
@@ -27,7 +28,7 @@ def get_all_user_ids():
     cursor_histo = collection_mongo_user_histo.find({}, {"user_id": 1})
     histo_ids = pd.DataFrame(cursor_histo)
     histo_id = histo_ids["user_id"]
-    cursor = likes_collection.find({}, {"user_id": 1})
+    cursor = collection_mongo_user_likes.find({}, {"user_id": 1})
     like_ids = pd.DataFrame(cursor)
     like_id = like_ids["user_id"]
     all_ids = pd.concat([histo_id, like_id], axis=0)

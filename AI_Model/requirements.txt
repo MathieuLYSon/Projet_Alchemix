@@ -1,3 +1,9 @@
+os
+sys
+bson
+numpy
 pandas
-pyspark
+pickle
 pymongo
+spotipy
+scikit-learn

@@ -1,10 +1,11 @@
 #!/usr/bin/env python
+import os
 import pickle
 import pandas as pd
 from bson.objectid import ObjectId
 
 
-# __init__.py
+#__init__.py
 from sklearn.metrics.pairwise import cosine_similarity
 from src.collect_data.get_user_histo import get_user_histo
 from src.collect_data.get_all_musics_to_df import get_all_musics
@@ -38,38 +39,55 @@ def get_user_recommendations(user_matrix, model_path : str):
                       "mode", "loudness", "speechiness", "acousticness",  "key", 
                       "instrumentalness", "valence", "tempo", "liveness"]
 
-    user_id = X_user["user_id"][0]
-    X_user = user_matrix.drop(columns="track_id", inplace=True)
+    print(" ################ DANS GET USER RECO ################ ")
+    print(user_matrix)
+
+    user_id = user_matrix["user_id"][0]
+    print("################", user_id, "################ \n")
+    mongo_id = ObjectId(user_id)
+    X_user = user_matrix.drop(columns="track_id")
     X_user = normalize_music_features_dataframe(X_user)
 
     # Ajoute un biais 
     X_user["user_id"] = 1
-    X_user = X_user.drop(columns="track_id", inplace=True)
+    X_user["biais"] = 1
+
+    print("Chargement du modèle")
+    
+    print(os.getcwd())
 
     with open(model_path, "rb") as model_file:
         reco_model = pickle.load(model_file)
 
+    print("Le modèle est chargé")
+    print(type(reco_model))
+    print(reco_model)
+
     # Retirer les musiques connues de l'utilisateur de all_musics
     all_musics = get_all_musics()
-    user_histo = get_user_histo(user_id)
-    user_likes = get_user_liked_musics(user_id)    
+    user_histo = get_user_histo(mongo_id)
+    user_likes = get_user_liked_musics(mongo_id)    
     histo_track_ids = user_histo["track_id"]
     likes_track_ids = user_likes["track_id"]
 
     collection_mongo_user_reco = mongo_connect_to_collection(username_mongo, password, cluster_uri, 
                                                                  database_name, collection_name)
-    mongo_id = ObjectId(user_id)
+    
     cursor = collection_mongo_user_reco.find({"user_id" : mongo_id}, {"track_id": 1})
+    len_cur = list(cursor)
 
-    if cursor:
-        reco_id = pd.DataFrame(cursor)
-        reco_ids = reco_id["user_id"]
-        all_ids = pd.concat([histo_track_ids, likes_track_ids, reco_ids], axis=0)
-        all_ids = all_ids.unique()
+    # if len(len_cur) > 0:
+    #     reco_id = pd.DataFrame(cursor)
+    #     reco_ids = reco_id["user_id"]
+    #     all_ids = pd.concat([histo_track_ids, likes_track_ids, reco_ids], axis=0)
+    #     all_ids = all_ids.unique()
 
-    else:
-        all_ids = pd.concat([histo_track_ids, likes_track_ids], axis=0)
-        all_ids = all_ids.unique()
+    # else:
+    #     all_ids = pd.concat([histo_track_ids, likes_track_ids], axis=0)
+    #     all_ids = all_ids.unique()
+
+    all_ids = pd.concat([histo_track_ids, likes_track_ids], axis=0)
+    all_ids = all_ids.unique()
 
     potential_reco = all_musics[~all_musics["track_id"].isin(all_ids)]
 
@@ -82,7 +100,11 @@ def get_user_recommendations(user_matrix, model_path : str):
 
     track_info = all_musics[all_musics["track_id"].isin(recommended_music["track_id"])]
 
-    for index, row in track_info:
+    print(" ################### TRACK INFO TYPE : ################### \n", type(track_info))
+    print(track_info.columns)
+    print(track_info)
+
+    for index, row in track_info.iterrows():
         track_id = row["track_id"]
         danceability = row["danceability"]
         energy = row["energy"]
@@ -109,27 +131,23 @@ def get_user_recommendations(user_matrix, model_path : str):
             "titre" : track_name,
             "year" : track_year,
             "artists" : main_artist,
-            "user_id" : user_id,
-            "album" : {
-                "album_name" : album_name,
-                "album_image" : album_image
-            },
-            "features" : {
-                "popularity" : popularity,
-                "danceability" : danceability,
-                "energy" : energy,
-                "key" : key,
-                "duration_ms" : duration_ms,
-                "time_signature" : time_signature,
-                "mode" : mode,
-                "loudness" : loudness,
-                "speechiness" : speechiness,
-                "acousticness" : acousticness,
-                "instrumentalness" : instrumentalness,
-                "valence" : valence,
-                "tempo" : tempo,
-                "liveness" : liveness
-                },
+            "user_id" : mongo_id,
+            "album_name" : album_name,
+            "album_image" : album_image,
+            "popularity" : popularity,
+            "danceability" : danceability,
+            "energy" : energy,
+            "key" : key,
+            "duration_ms" : duration_ms,
+            "time_signature" : time_signature,
+            "mode" : mode,
+            "loudness" : loudness,
+            "speechiness" : speechiness,
+            "acousticness" : acousticness,
+            "instrumentalness" : instrumentalness,
+            "valence" : valence,
+            "tempo" : tempo,
+            "liveness" : liveness,
             "note" : 0,
             "liked" : False
             }

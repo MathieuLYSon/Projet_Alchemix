@@ -2,7 +2,7 @@
 import pandas as pd
 from bson.objectid import ObjectId
 
-# __init__.py
+#__init__.py
 from src.connections.mongo_connect import mongo_connect_to_collection
 
 
