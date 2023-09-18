@@ -25,8 +25,15 @@ def check_data_existance():
     cursor_histo = collection_mongo_user_histo.find({}, {"user_id": 1})
     list_histo = list(cursor_histo)
 
+    print(" ################### list_histo ################### ")
+    print(list_histo)
+
     cursor_likes = collection_mongo_user_likes.find({}, {"user_id": 1})
     list_likes = list(cursor_likes)
+
+    print(" ################### list_likes ################### ")
+    print(list_likes)
+
 
     if (len(list_histo) > 0 | len(list_likes) > 0):
         return True
