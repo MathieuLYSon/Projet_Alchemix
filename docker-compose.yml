@@ -48,6 +48,6 @@ services:
   python_script:
     build:
       context: ./AI_Model
-    command: python /app/mon_script.py
+    command: python /app/scripts/update_all_users_reco.py
     networks:
       - ai_net
