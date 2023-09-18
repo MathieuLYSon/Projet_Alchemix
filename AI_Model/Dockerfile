@@ -5,10 +5,10 @@ FROM python:3.8
 WORKDIR /app
 
 # Copiez les fichiers locaux dans le conteneur
-COPY ./src /app
+COPY ./ /app
 
 # Installez les dépendances (si nécessaire)
 RUN pip install -r requirements.txt
 
 # Commande par défaut pour exécuter votre application
-CMD ["python", "mon_script.py"]
+CMD ["python", "/scripts/update_all_users_reco.py"]
