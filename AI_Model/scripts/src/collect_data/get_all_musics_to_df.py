@@ -28,7 +28,7 @@ def get_all_musics():
         "artists.featurings": 1,
         "artists.artist_genre": 1,
         "album.album_name": 1,
-        "album_album_image": 1,
+        "album.album_image": 1,
         "album.all_musics":1,
         "features": 1,
         "_id": 0
