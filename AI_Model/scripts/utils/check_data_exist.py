@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import pandas as pd
 
 #__init__.py
 from src.connections.mongo_connect import mongo_connect_to_collection
@@ -24,18 +25,21 @@ def check_data_existance():
     
     cursor_histo = collection_mongo_user_histo.find({}, {"user_id": 1})
     list_histo = cursor_histo.count()
+    list_histo = pd.Dataframe(cursor_histo)
+    histo_count = len(list_histo)
 
     print(" ################### list_histo ################### ")
-    print(list_histo)
+    print(histo_count)
 
     cursor_likes = collection_mongo_user_likes.find({}, {"user_id": 1})
-    list_likes = cursor_likes.count()
+    list_likes = pd.Dataframe(cursor_likes)
+    likes_count = len(list_likes)
 
     print(" ################### list_likes ################### ")
-    print(list_likes)
+    print(likes_count)
 
 
-    if (list_histo > 0 & list_likes > 0):
+    if (histo_count > 0 & likes_count > 0):
         return True
     
     else:
