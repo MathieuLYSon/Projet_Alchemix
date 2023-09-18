@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 import pandas as pd
-from bson.objectid import ObjectId
 
 #__init__.py
+# from src.data_processing.bson.objectid import ObjectId
 from src.connections.mongo_connect import mongo_connect_to_collection
 
 
@@ -47,8 +47,8 @@ def get_user_liked_musics(user_id: str):
         "note": 1
     }
 
-    mongo_id = ObjectId(user_id)
-    cursor = collection_mongo_liked_musics.find({"user_id": mongo_id}, projection)
+    # mongo_id = ObjectId(user_id)
+    cursor = collection_mongo_liked_musics.find({"user_id": user_id}, projection)
     df = pd.DataFrame(cursor)
 
     return df

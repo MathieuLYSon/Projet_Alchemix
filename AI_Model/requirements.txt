@@ -1,9 +1,6 @@
-os
-sys
-bson
 numpy
+typing
 pandas
-pickle
-pymongo
 spotipy
-scikit-learn
+pymongo==4.5.0
+scikit-learn==1.2.2

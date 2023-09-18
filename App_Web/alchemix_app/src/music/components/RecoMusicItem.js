@@ -34,7 +34,7 @@ const RecoMusicItem = props => {
     <li className="music_item_container">
       <Card className="music_item_card">
         <div className="music_item_firt">
-          <img src={`http://localhost:8082/${props.albumImage}`} alt={props.name} />
+          <img src={`https://i.scdn.co/image/${props.albumImage}`} alt={props.name} />
         </div>
         <div className="music_item_second">
           <h2>{props.name}</h2>

@@ -2,10 +2,10 @@
 import os
 import pickle
 import pandas as pd
-from bson.objectid import ObjectId
-
+import bson
 
 #__init__.py
+# from src.data_processing.bson.objectid import ObjectId
 from sklearn.metrics.pairwise import cosine_similarity
 from src.collect_data.get_user_histo import get_user_histo
 from src.collect_data.get_all_musics_to_df import get_all_musics
@@ -44,7 +44,7 @@ def get_user_recommendations(user_matrix, model_path : str):
 
     user_id = user_matrix["user_id"][0]
     print("################", user_id, "################ \n")
-    mongo_id = ObjectId(user_id)
+    # mongo_id = ObjectId(user_id)
     X_user = user_matrix.drop(columns="track_id")
     X_user = normalize_music_features_dataframe(X_user)
 
@@ -57,7 +57,10 @@ def get_user_recommendations(user_matrix, model_path : str):
     print(os.getcwd())
 
     with open(model_path, "rb") as model_file:
-        reco_model = pickle.load(model_file)
+        reco_model = pickle.load(model_file, encoding="latin1")
+        # unpickle_steps = pickle._Unpickler(model_file)
+        # unpickle_steps.encoding = 'latin1'
+        # reco_model = unpickle_steps.load()
 
     print("Le modèle est chargé")
     print(type(reco_model))
@@ -65,15 +68,15 @@ def get_user_recommendations(user_matrix, model_path : str):
 
     # Retirer les musiques connues de l'utilisateur de all_musics
     all_musics = get_all_musics()
-    user_histo = get_user_histo(mongo_id)
-    user_likes = get_user_liked_musics(mongo_id)    
+    user_histo = get_user_histo(user_id)
+    user_likes = get_user_liked_musics(user_id)    
     histo_track_ids = user_histo["track_id"]
     likes_track_ids = user_likes["track_id"]
 
     collection_mongo_user_reco = mongo_connect_to_collection(username_mongo, password, cluster_uri, 
                                                                  database_name, collection_name)
     
-    cursor = collection_mongo_user_reco.find({"user_id" : mongo_id}, {"track_id": 1})
+    cursor = collection_mongo_user_reco.find({"user_id" : user_id}, {"track_id": 1})
     len_cur = list(cursor)
 
     # if len(len_cur) > 0:
@@ -131,7 +134,7 @@ def get_user_recommendations(user_matrix, model_path : str):
             "titre" : track_name,
             "year" : track_year,
             "artists" : main_artist,
-            "user_id" : mongo_id,
+            "user_id" : user_id,
             "album_name" : album_name,
             "album_image" : album_image,
             "popularity" : popularity,

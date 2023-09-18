@@ -173,10 +173,10 @@ const handleSpotifyCallback = async (req, res, next) => {
       const createdMusic = new MusicLiked({
         added_at: trackList[i][y].added_at,
         track_id: trackId,
-        track_name: trackList[i][y].track.name,
+        titre: trackList[i][y].track.name,
         artists: trackArtists,
         album_name: trackList[i][y].track.album.name,
-        album_image: trackList[0][0].track.album.images[1].url.substring(24),
+        album_image: trackList[i][y].track.album.images[1].url.substring(24),
         year: trackList[i][y].track.album.release_date.substring(0, 4),
         popularity: trackList[i][y].track.popularity,
         danceability: spotifyMusicFeaturesResponse.data.danceability,
@@ -237,7 +237,7 @@ const handleSpotifyCallback = async (req, res, next) => {
     let musicSchema = {
       played_at: responseItem[i].played_at,
       track_id: trackId,
-      track_name: responseItem[i].track.name,
+      titre: responseItem[i].track.name,
       artists: trackArtists,
       album_name: responseItem[i].track.album.name,
       album_image: responseItem[i].track.album.images[1].url.substring(24),
@@ -275,7 +275,7 @@ const handleSpotifyCallback = async (req, res, next) => {
   await sess.commitTransaction();
   console.log("User History ont été stocké dans la BDD user_histories !");
 
-  res.redirect('http://localhost:3000/profil'); // Redirige l'User sur sa page Profil
+  res.redirect('http://localhost:8083/profil'); // Redirige l'User sur sa page Profil
   console.log("########## ########## END Route ########## ##########");
 };
 

@@ -8,7 +8,7 @@ import axios from 'axios';
 
 const RecommandationPage = () => {
     const { isLoading, error, clearError } = useHttpClient();
-    const [loadedRecoMusicsUser, setLoadedRecoMusicsUser] = useState();
+    const [loadedLikeMusicsUser, setLoadedLikeMusicsUser] = useState();
     const auth = useContext(AuthContext);
 
     useEffect(() => {
@@ -20,7 +20,7 @@ const RecommandationPage = () => {
       })
       .then((response) => {
         console.log(response.data.userMusicsRecommended)
-        setLoadedRecoMusicsUser(response.data.userMusicsRecommended);
+        setLoadedLikeMusicsUser(response.data.userMusicsRecommended);
       })
       .catch((error) => {
         console.error("Erreur lors de la vérification de l'authentification Spotify :", error);
@@ -35,7 +35,7 @@ const RecommandationPage = () => {
                 <LoadingSpinner />
                 </div>
             )}
-        {!isLoading && loadedRecoMusicsUser && <RecoMusicsList items={loadedRecoMusicsUser} />}
+        {!isLoading && loadedLikeMusicsUser && <RecoMusicsList items={loadedLikeMusicsUser} />}
         </React.Fragment>
       );
 };

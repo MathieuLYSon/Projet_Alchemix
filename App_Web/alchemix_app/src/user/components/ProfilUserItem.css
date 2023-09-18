@@ -66,6 +66,6 @@
 }
 
 .user_menu li button.active {
-    border-bottom: 2px solid #477efe;
-    background-color: rgba(70, 126, 254, 15%);
+    border-bottom: 2px solid #14B126;
+    background-color: #14b12640
 }

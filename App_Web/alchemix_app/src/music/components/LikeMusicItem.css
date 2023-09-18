@@ -1,0 +1,110 @@
+.music_item_container {
+  margin: 5px 0;
+  width: 100%;
+}
+
+.music_item_container a:hover,
+.music_item_container a:active {
+  background: #1E1E1E;
+}
+
+.music_item_card {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  padding: 0;
+  color: white;
+  background: #1E1E1E;
+  justify-content: space-between;
+  border: 1px solid #1E1E1E;
+}
+
+.music_item_firt {
+  justify-content: flex-start;
+  margin-right: 1rem;
+  width: 110px;
+  height: 100%;
+}
+
+.music_item_firt img {
+  width: 110px;
+  height: 100%;
+  border-bottom-left-radius: 20px;
+  border-top-left-radius: 20px;
+}
+
+.music_item_second {
+  align-content: space-around;
+  display: grid;
+  height: 100%;
+  width: 50%;
+}
+
+.music_item_second h2 {
+  font-size: 20px;
+  margin: 8px 0;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.music_item_second h3 {
+  margin: 3px;
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.music_item_third {
+  width: 20%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.music_item_third label {
+  margin: 0;
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.music_item_third select {
+  background: #1E1E1E;
+  color: #fff;
+  cursor: pointer;
+  border-color: transparent;
+}
+
+.music_item_third .select:after {
+  border-color: transparent;
+}
+
+.music_item_fourth {
+  align-items: center;
+  display: grid;
+  height: 100%;
+  justify-content: space-evenly;
+  width: 15%;
+}
+
+.music_item_fourth img {
+  width: 35px;
+  cursor: pointer;
+}
+
+.music_item_card:hover,
+.music_item_card:active {
+  border: 2.5px solid #14b12680;
+}
+
+.music_item_container:hover h2,
+.music_item_container:active h2 {
+  color: #14B126;
+  text-decoration: underline;
+  font-size: 20.5px;
+}
+
+/* .music_item_container:hover h3,
+.music_item_container:active h3 {
+
+} */

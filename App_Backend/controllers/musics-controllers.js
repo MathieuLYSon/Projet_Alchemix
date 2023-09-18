@@ -1,7 +1,4 @@
-const { validationResult, header } = require('express-validator');
-
 const HttpError = require('../models/http-error');
-const Music = require('../models/music');
 const MusicLiked = require('../models/music-liked');
 const MusicRecommended = require('../models/music-recommended');
 
@@ -108,12 +105,13 @@ const UpdateRecoMusicRankByUserId = async (req, res, next) => {
     );
     return next(error);
   }
+
   music.note = newNote;
   await music.save()
   console.log("Music == ", music);
   console.log("User ID == ", userId);
   console.log("User ID == ", musicId);
-  res.json("Salut");
+  res.json({ update: true });
   console.log("########## ########## ########## ##########");
 }
 
@@ -141,7 +139,7 @@ const UpdateLikeMusicRankByUserId = async (req, res, next) => {
   console.log("Music == ", music);
   console.log("User ID == ", userId);
   console.log("User ID == ", musicId);
-  res.json("Salut");
+  res.json({ update: true });
   console.log("########## ########## ########## ##########");
 }
 

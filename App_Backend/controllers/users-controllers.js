@@ -1,7 +1,6 @@
 const { validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-
 const HttpError = require('../models/http-error');
 const User = require('../models/user');
 
@@ -42,7 +41,7 @@ const getProfilByUserId = async (req, res, next) => {
 
 const signup = async (req, res, next) => {
   console.log("\n########## ########## Signup Route ########## ##########");
-  const errors = validationResult(req);
+  // const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return next(
       new HttpError('Invalid inputs passed, please check your data.', 422)
@@ -84,7 +83,7 @@ const signup = async (req, res, next) => {
   const createdUser = new User({
     name,
     email,
-    image: req.file.path,
+    // image: req.file.path,
     password: hashedPassword,
     places: [],
     musics: [],

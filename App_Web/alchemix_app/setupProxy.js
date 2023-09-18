@@ -8,4 +8,11 @@ export default function (app) {
       changeOrigin: true,
     })
   );
+  app.use(
+    '/uploads', // Endpoint du backend
+    createProxyMiddleware({
+      target: 'http://localhost:8082', // Adresse du backend
+      secure: false,
+    })
+  );
 };

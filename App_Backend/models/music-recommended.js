@@ -6,7 +6,7 @@ const Schema = mongoose.Schema;
 const musicRecommendedSchema = new Schema({
     added_at: { type: String, require: true },
     track_id: { type: String, require: true },
-    track_name: { type: String, require: true },
+    titre: { type: String, require: true },
     artists: [{ type: String, require: true }],
     album_name: { type: String, require: true },
     album_image: { type: String, require: true },

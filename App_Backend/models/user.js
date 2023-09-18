@@ -7,7 +7,6 @@ const userSchema = new Schema({
     name: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true, minlength: 6 },
-    image: { type: String, required: true },
     places: [{ type: mongoose.Types.ObjectId, required: true, ref: 'Place'}],
     musics: [{ type:mongoose.Types.ObjectId, require: true, ref: 'Music'}],
     liked_musics: [{ type:mongoose.Types.ObjectId, require: true, ref: 'Liked_Music'}],

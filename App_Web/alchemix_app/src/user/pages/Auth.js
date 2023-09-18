@@ -7,7 +7,7 @@ import Input from '../../shared/components/FormElements/Input';
 import Button from '../../shared/components/FormElements/Button';
 import ErrorModal from '../../shared/components/UIElements/ErrorModal';
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
-import ImageUpload from '../../shared/components/FormElements/ImageUpload';
+// import ImageUpload from '../../shared/components/FormElements/ImageUpload';
 import {
   VALIDATOR_EMAIL,
   VALIDATOR_MINLENGTH,
@@ -43,7 +43,7 @@ const Auth = () => {
         {
           ...formState.inputs,
           name: undefined,
-          image: undefined
+          // image: undefined
         },
         formState.inputs.email.isValid && formState.inputs.password.isValid
       );
@@ -55,10 +55,10 @@ const Auth = () => {
             value: '',
             isValid: false
           },
-          image: {
-            value: null,
-            isValid: false
-          }
+          // image: {
+          //   value: null,
+          //   isValid: false
+          // }
         },
         false
       );
@@ -72,7 +72,7 @@ const Auth = () => {
     if (isLoginMode) {
       try {
         const responseData = await sendRequest(
-          'http://localhost:8082/api/users/login',
+          'http://localhost:5000/api/users/login',
           'POST',
           JSON.stringify({
             email: formState.inputs.email.value,
@@ -90,9 +90,9 @@ const Auth = () => {
         formData.append('email', formState.inputs.email.value);
         formData.append('name', formState.inputs.name.value);
         formData.append('password', formState.inputs.password.value);
-        formData.append('image', formState.inputs.image.value);
+        // formData.append('image', formState.inputs.image.value);
         const responseData = await sendRequest(
-          'http://localhost:8082/api/users/signup',
+          'http://localhost:5000/api/users/signup',
           'POST',
           formData
         );
@@ -111,13 +111,13 @@ const Auth = () => {
           <h2>Connectez-vous à Alchemix</h2>
           <hr></hr>
           <form onSubmit={authSubmitHandler} className='auth_container-form'>
-            {!isLoginMode && (
+            {/* {!isLoginMode && (
               <ImageUpload
                 center
                 id="image"
                 onInput={inputHandler}
               />
-            )}
+            )} */}
             {!isLoginMode && (
               <Input
                 element="input"

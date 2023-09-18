@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 import sys
 import pandas as pd
-from bson.objectid import ObjectId
+# from bson import ObjectId
 
 #__init__.py
+# from src.data_processing.bson.objectid import ObjectId
 from src.connections.mongo_connect import mongo_connect_to_collection
 
 
@@ -30,8 +31,8 @@ def get_user_histo(user_id: str):
         "__v": 1
     }
 
-    mongo_id = ObjectId(user_id)
-    cursor = collection_mongo_user_histories.find({"user_id": mongo_id}, projection)
+    # mongo_id = ObjectId(user_id)
+    cursor = collection_mongo_user_histories.find({"user_id": user_id}, projection)
     df = pd.DataFrame(cursor)
 
     print(" ################### MUSICS_INFO ################### \n")

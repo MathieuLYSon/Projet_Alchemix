@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 import pandas as pd
 
-#__init__.py
-from src.data_processing.normalize_features import normalize_music_features_dataframe
-
 
 
 def get_user_matrix(user_hito, user_likes):
@@ -45,7 +42,7 @@ def get_user_matrix(user_hito, user_likes):
     if len(user_matrix) < 100:
         number_add_tracks = 100 - len(user_matrix)
         add_tracks_df = user_likes_df[matrix_columns].iloc[:number_add_tracks]
-        user_matrix = user_matrix.append(add_tracks_df)
+        user_matrix = pd.concat([user_matrix, add_tracks_df], axis=0)
         user_matrix.reset_index(inplace=True)
         user_matrix.drop(columns="index", inplace=True)
     else:

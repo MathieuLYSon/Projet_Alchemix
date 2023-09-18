@@ -42,3 +42,10 @@ def download_all_images():
     image_info = get_image_url()
     for (image_id, image_url) in image_info:
         download_image(image_url, image_id)
+
+def main():
+    
+    download_all_images()
+
+if __name__ == "__main__":
+    main()

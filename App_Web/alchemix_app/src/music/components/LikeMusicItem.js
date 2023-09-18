@@ -33,14 +33,14 @@ const LikeMusicItem = props => {
     <li className="music_item_container">
       <Card className="music_item_card">
         <div className="music_item_firt">
-          <img src={`http://localhost:8082/${props.albumImage}`} alt={props.name} />
+          <img src={`https://i.scdn.co/image/${props.albumImage}`} alt={props.name} />
         </div>
         <div className="music_item_second">
           <h2>{props.name}</h2>
-          {props.artists.length < 0 ? (
-            <h3>Artiste : {props.artists}</h3>
+          {props.artists.length == 1 ? (
+            <h3>Artiste : {props.artists[0]}</h3>
           ) : (
-            <h3>Artiste : {props.artists}</h3>
+            <h3>Artistes : {props.artists[0]} ft. {props.artists[1]}</h3>
           )}
           <h3>Album : {props.albumName}</h3>
           <h3>Sortie : {props.year}</h3>

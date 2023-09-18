@@ -3,6 +3,7 @@ import React, {useEffect, useState} from 'react';
 // import Button from '../../shared/components/FormElements/Button';
 import DisplayInfoUser from './DisplayInfoUser'
 import DisplayConnectUser from './DisplayConnectUser';
+import PictoUser from '../../assets/images/Picto_user_profil.png'
 import './ProfilUserItem.css';
 
 const ProfilUserItem = props => {
@@ -29,7 +30,7 @@ const ProfilUserItem = props => {
       <div className='profil_header'>
         <div className='user_image'>
           <img
-            src={`http://localhost:8082/${props.image}`}
+            src={PictoUser}
             alt={`introuvable`}
           />
         </div>

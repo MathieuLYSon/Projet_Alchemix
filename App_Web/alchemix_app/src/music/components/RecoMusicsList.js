@@ -21,7 +21,7 @@ const RecoMusicsList = props => {
         <RecoMusicItem
           key={music.id}
           id={music.id}
-          name={music.track_name}
+          name={music.titre}
           albumName={music.album_name}
           albumImage={music.album_image}
           year={music.year}
