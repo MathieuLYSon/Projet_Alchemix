@@ -33,6 +33,9 @@ def all_user_reco(model_path : str):
         print("############### matrix_USER ############### : \n", user_matrix.columns)
         get_user_recommendations(user_matrix, model_path)
 
+    print("Tout les utilisateurs ont reçu leurs recommandations")
+    exit()
+
 
 
 def main(arg):
