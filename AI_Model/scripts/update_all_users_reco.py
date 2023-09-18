@@ -39,8 +39,12 @@ def main(arg):
     
     print(arg)
     print(len(arg))
-    if check_data_existance() == True:
-        print("Il y a des données")
+    print("check_data")
+    check_data = check_data_existance()
+    print(check_data)
+
+    if check_data == True:
+        print("Il y a des donnéess")
         
         if len(arg) == 2:
             print(arg[1])
