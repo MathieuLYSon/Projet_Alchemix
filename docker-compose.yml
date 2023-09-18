@@ -26,7 +26,7 @@ services:
       - frontend_net
       - ai_net
     volumes:
-       - ./App_Backend/uploads/images_users:/app/uploads/images_users
+       - ./App_Backend/uploads:/app/uploads
     restart: unless-stopped
 
 #################### FRONTEND ####################
@@ -48,6 +48,6 @@ services:
   python_script:
     build:
       context: ./AI_Model
-    command: python /app/scripts/update_all_users_reco.py
+    command: python /app/scripts/update_all_users_reco.py "./model/best_param_model.pkl"
     networks:
       - ai_net
