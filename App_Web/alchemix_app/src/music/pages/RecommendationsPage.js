@@ -1,26 +1,26 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useHttpClient } from '../../shared/hooks/http-hook';
 import { AuthContext } from '../../shared/context/auth-context';
-import LikeMusicsList from '../components/LikeMusicsList';
+import RecoMusicsList from '../components/RecoMusicsList';
 import ErrorModal from '../../shared/components/UIElements/ErrorModal';
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
 import axios from 'axios';
 
-const MusicsPage = () => {
+const RecommandationPage = () => {
     const { isLoading, error, clearError } = useHttpClient();
-    const [loadedLikeMusicsUser, setLoadedLikeMusicsUser] = useState();
+    const [loadedRecoMusicsUser, setLoadedRecoMusicsUser] = useState();
     const auth = useContext(AuthContext);
 
     useEffect(() => {
       axios
-      .get(`http://localhost:8082/api/music/liked/${auth.userId}`, {
+      .get(`http://localhost:8082/api/music/recommended/${auth.userId}`, {
         headers: {
           Authorization: auth.token,
         },
       })
       .then((response) => {
-        console.log(response.data.userMusicsLiked)
-        setLoadedLikeMusicsUser(response.data.userMusicsLiked);
+        console.log(response.data.userMusicsRecommended)
+        setLoadedRecoMusicsUser(response.data.userMusicsRecommended);
       })
       .catch((error) => {
         console.error("Erreur lors de la vérification de l'authentification Spotify :", error);
@@ -35,9 +35,9 @@ const MusicsPage = () => {
                 <LoadingSpinner />
                 </div>
             )}
-        {!isLoading && loadedLikeMusicsUser && <LikeMusicsList items={loadedLikeMusicsUser} />}
+        {!isLoading && loadedRecoMusicsUser && <RecoMusicsList items={loadedRecoMusicsUser} />}
         </React.Fragment>
       );
 };
 
-export default MusicsPage;
+export default RecommandationPage;

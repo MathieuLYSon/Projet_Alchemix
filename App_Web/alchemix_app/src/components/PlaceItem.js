@@ -85,7 +85,6 @@ const PlaceItem = props => {
           <div className="place-item__image">
             <img
               src={`http://localhost:8082/${props.image}`}
-              // src={`http://localhost:8082/${props.image}`}
               alt={props.title}
             />
           </div>

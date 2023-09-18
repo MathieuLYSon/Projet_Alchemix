@@ -10,9 +10,8 @@ networks:
 
 #################### SERVICES ####################
 services:
-
 #################### BACKEND ####################
-  nodejs.app:
+  backend_app:
     container_name: nodeJsApp
     build:
       context: .
@@ -20,14 +19,18 @@ services:
     env_file: .env
     ports:
       - "8082:8082"
+    environment:
+      - NODE_ENV=production
     networks:
       - backend_net
       - frontend_net
       - ai_net
+    volumes:
+       - ./App_Backend/uploads/images_users:/app/uploads/images_users
     restart: unless-stopped
 
 #################### FRONTEND ####################
-  reactjs.app:
+  frontent_app:
     container_name: reactJsApp
     build:
       context: .
@@ -37,6 +40,8 @@ services:
     networks:
       - frontend_net
       - backend_net
+    depends_on:
+      - backend_app
     restart: unless-stopped
 
 #################### AI MODEL ####################
@@ -46,56 +51,3 @@ services:
     command: python /app/mon_script.py
     networks:
       - ai_net
-  
-  spark-master:
-    image: docker.io/bitnami/spark:3.3
-    build:
-      context: .
-      dockerfile: ./AI_Model/Dockerfile_spark
-    ports:
-      - "9090:8080"
-      - "7077:7077"
-    volumes:
-      - ./AI_Model/src:/opt/spark-apps
-      - ./AI_Model/src:/opt/spark-data
-    environment:
-      - SPARK_LOCAL_IP=spark-master
-      - SPARK_WORKLOAD=master
-  
-  spark-worker-a:
-    image: docker.io/bitnami/spark:3.3
-    ports:
-      - "9091:8080"
-      - "7000:7000"
-    depends_on:
-      - spark-master
-    environment:
-      - SPARK_MASTER=spark://spark-master:7077
-      - SPARK_WORKER_CORES=1
-      - SPARK_WORKER_MEMORY=1G
-      - SPARK_DRIVER_MEMORY=1G
-      - SPARK_EXECUTOR_MEMORY=1G
-      - SPARK_WORKLOAD=worker
-      - SPARK_LOCAL_IP=spark-worker-a
-    volumes:
-      - ./apps:/opt/spark-apps
-      - ./data:/opt/spark-data
-
-  spark-worker-b:
-    image: docker.io/bitnami/spark:3.3
-    ports:
-      - "9092:8080"
-      - "7001:7000"
-    depends_on:
-      - spark-master
-    environment:
-      - SPARK_MASTER=spark://spark-master:7077
-      - SPARK_WORKER_CORES=1
-      - SPARK_WORKER_MEMORY=1G
-      - SPARK_DRIVER_MEMORY=1G
-      - SPARK_EXECUTOR_MEMORY=1G
-      - SPARK_WORKLOAD=worker
-      - SPARK_LOCAL_IP=spark-worker-b
-    volumes:
-      - ./AI_Model/src:/opt/spark-apps
-      - ./AI_Model/src:/opt/spark-data

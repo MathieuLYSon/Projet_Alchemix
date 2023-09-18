@@ -28,7 +28,7 @@
 
 .navlinks-links a:hover,
 .navlinks-links a.active {
-  border-bottom: 3px solid #477efe;
+  border-bottom: 3px solid #14B126;
 }
 
 .navlinks-links button,
@@ -36,7 +36,7 @@
   cursor: pointer;
   border-radius: 30px;
   color: #fff;
-  background: #477efe;
+  background: #14B126;
   padding: 8px 10px;
   font: inherit;
   font-weight: bold;
@@ -51,7 +51,7 @@
 .navlinks-links button.active,
 .navlinks-links .navlinks-login_button a.active {
   background: #fff;
-  color: #477efe;
+  color: #14B126;
   padding: 8px 10px;
   border: 2px solid #fff;
 }
@@ -95,10 +95,10 @@
 
   .navlinks-links button {
     cursor: pointer;
-    border: 2px solid #477efe;
+    border: 2px solid #14B126;
     border-radius: 30px;
     color: #fff;
-    background: #477efe;
+    background: #14B126;
     padding: 8px 10px;
     font: inherit;
     font-weight: bold;
@@ -107,7 +107,7 @@
   .navlinks-links button:hover,
   .navlinks-links button:active {
     background: #fff;
-    color: #477efe;
+    color: #14B126;
     padding: 8px 10px;
     border: 2px solid #fff;
   }

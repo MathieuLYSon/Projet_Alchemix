@@ -6,7 +6,7 @@ const HttpError = require('../models/http-error');
 const User = require('../models/user');
 
 const getUsers = async (req, res, next) => {
-  console.log("########## ########## Get Users Routes ########## ##########");
+  console.log("\n########## ########## Get Users Route ########## ##########");
   let users;
   try {
     users = await User.find({}, '-password');
@@ -18,11 +18,11 @@ const getUsers = async (req, res, next) => {
     return next(error);
   }
   res.json({ users: users.map(user => user.toObject({ getters: true })) });
-  console.log("########## ########## ########## ##########");
+  console.log("########## ########## END Route ########## ##########");
 };
 
 const getProfilByUserId = async (req, res, next) => {
-  console.log("########## ########## Get Profil by UserId Routes ########## ##########");
+  console.log("\n########## ########## Get Profil by UserId Route ########## ##########");
   const userId = req.params.uid;
   // console.log("userId == ", req.params.uid);
   let users;
@@ -37,11 +37,11 @@ const getProfilByUserId = async (req, res, next) => {
   }
   const filteredUser = users.filter(user => user._id == userId);
   res.json({ user: filteredUser.map(user => user.toObject({ getters: true })) });
-  console.log("########## ########## ########## ##########");
+  console.log("########## ########## END Route ########## ##########");
 };
 
 const signup = async (req, res, next) => {
-  console.log("########## ########## Signup Routes ########## ##########");
+  console.log("\n########## ########## Signup Route ########## ##########");
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return next(
@@ -88,8 +88,8 @@ const signup = async (req, res, next) => {
     password: hashedPassword,
     places: [],
     musics: [],
-    spotifyId: "",
-    displayName: "",
+    liked_musics: [],
+    recommended_musics: [],
     accessToken: "",
     refreshToken: "",
   });
@@ -120,11 +120,11 @@ const signup = async (req, res, next) => {
   }
 
   res.status(201).json({ userId: createdUser.id, email: createdUser.email, token: token });
-  console.log("########## ########## ########## ##########");
+  console.log("########## ########## END Route ########## ##########");
 };
 
 const login = async (req, res, next) => {
-  console.log("########## ########## Login Routes ########## ##########");
+  console.log("\n########## ########## Login Route ########## ##########");
   const { email, password } = req.body;
 
   console.log("Login Fonction run :");
@@ -194,7 +194,7 @@ const login = async (req, res, next) => {
     email: existingUser.email,
     token: token
   });
-  console.log("########## ########## ########## ##########");
+  console.log("########## ########## END Route ########## ##########");
 };
 
 exports.getUsers = getUsers;

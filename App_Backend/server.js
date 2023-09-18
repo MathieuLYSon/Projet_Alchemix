@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-// const cors = require('cors');
+const cors = require('cors');
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -19,29 +19,33 @@ app.use('/uploads/images', express.static(path.join('uploads', 'images')));
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Credentials', true); 
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8083/');
+  res.setHeader('Access-Control-Allow-Origin', [
+    'http://localhost:8083',
+    'http://127.0.0.1:8083',
+    'http://localhost:8082',
+    'http://127.0.0.1:8082',
+    'https://accounts.spotify.com'
+  ]);
   res.setHeader(
     'Access-Control-Allow-Headers',
     'Origin, X-Requested-With, Content-Type, Accept, Authorization'
   );
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE');
-
   next();
 });
 
-// // Autorisez uniquement certaines origines à accéder à votre backend
-// const allowedOrigins = ['http://localhost:8083', 'http://localhost:8083'];
-// const corsOptions = {
-//   origin: function (origin, callback) {
-//     if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
-//       callback(null, true);
-//     } else {
-//       callback(new Error('Accès non autorisé par CORS'));
-//     }
-//   },
-// };
-
-// app.use(cors(corsOptions));
+// Autorisez uniquement certaines origines à accéder à votre backend
+const allowedOrigins = ['http://localhost:8083', 'http://localhost:8082'];
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Accès non autorisé par CORS'));
+    }
+  },
+};
+app.use(cors(corsOptions));
 
 // app.use(cors());
 // app.options('*', cors());

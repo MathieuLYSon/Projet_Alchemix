@@ -8,7 +8,7 @@ import { AuthContext } from '../../shared/context/auth-context';
 import ProfilUserList from '../components/ProfilUserList';
 import "./ProfilPage.css"
 
-const UserProfil= props => {
+const UserProfil = props => {
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [loadedUsers, setLoadedUsers] = useState();
   const auth = useContext(AuthContext);

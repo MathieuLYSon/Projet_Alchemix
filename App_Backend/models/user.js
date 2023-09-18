@@ -10,8 +10,9 @@ const userSchema = new Schema({
     image: { type: String, required: true },
     places: [{ type: mongoose.Types.ObjectId, required: true, ref: 'Place'}],
     musics: [{ type:mongoose.Types.ObjectId, require: true, ref: 'Music'}],
-    spotifyId: { type: String, require: false },
-    displayName: { type: String, require: false },
+    liked_musics: [{ type:mongoose.Types.ObjectId, require: true, ref: 'Liked_Music'}],
+    recommended_musics: [{ type:mongoose.Types.ObjectId, require: true, ref: 'Recommended_Music'}],
+    user_history: [{ type:mongoose.Types.ObjectId, require: true, ref: 'User_Historie'}],
     accessToken: { type: String, require: false },
     refreshToken: { type: String, require: false },
 });

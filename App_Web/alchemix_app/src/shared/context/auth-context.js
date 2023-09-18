@@ -4,6 +4,10 @@ export const AuthContext = createContext({
   isLoggedIn: false,
   userId: null,
   token: null,
+  spotifyRefreshToken: null,
+  spotifyAccessToken: null,
   login: () => {},
-  logout: () => {}
+  logout: () => {},
+  loginSpotify: () => {},
+  refreshSpotifyToken: () => {}
 });

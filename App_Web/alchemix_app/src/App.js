@@ -11,7 +11,7 @@ import NewPlace from './pages/NewPlace';
 import UserPlaces from './pages/UserPlaces';
 import UpdatePlace from './pages/UpdatePlace';
 import MusicsPage from './music/pages/MusicsPage';
-import RecommendationPage from './music/pages/RecommendationPage';
+import RecommendationsPage from './music/pages/RecommendationsPage';
 import WelcomePage from './pages/WelcomePage';
 import Auth from './user/pages/Auth';
 import MainNavigation from './shared/components/Navigation/MainNavigation';
@@ -29,11 +29,11 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Users />}/>
         <Route path="/:userId/places" element={<UserPlaces />} exact={true} />
-        <Route path='/:userId/profil' element={<UserProfil />} exact={true} />
+        <Route path='/profil' element={<UserProfil />} exact={true} />
         <Route path="/places/new/" element={<NewPlace />} exact={true} />
         <Route path="/places/:placeId" element={<UpdatePlace />} exact={true} />
         <Route path="/music" element={<MusicsPage />} exact={true} />
-        <Route path='/recommandation' element={<RecommendationPage />} exact={true} />
+        <Route path='/recommandation' element={<RecommendationsPage />} exact={true} />
         <Route path ='*' element={<Users />} />
       </Routes>
     );
