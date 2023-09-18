@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 #__init__.py
-from scripts.src.connections.mongo_connect import mongo_connect_to_collection
+from src.connections.mongo_connect import mongo_connect_to_collection
 
 
 
